@@ -43,15 +43,29 @@ document.getElementById('btnNo').onclick=()=>answer('NO');
 document.getElementById('btnPause').onclick=()=>{
  isPaused=!isPaused;
  const btn=document.getElementById('btnPause');
+ const btnSi=document.getElementById('btnSi');
+ const btnNo=document.getElementById('btnNo');
  if(isPaused){
   clearInterval(timer);
   btn.textContent='Reanudar';
   btn.classList.add('resumed');
+  btnSi.disabled=true;
+  btnNo.disabled=true;
+  btnSi.style.opacity='0.5';
+  btnNo.style.opacity='0.5';
+  btnSi.style.pointerEvents='none';
+  btnNo.style.pointerEvents='none';
  }else{
   btn.textContent='Pausar';
   btn.classList.remove('resumed');
+  btnSi.disabled=false;
+  btnNo.disabled=false;
+  btnSi.style.opacity='1';
+  btnNo.style.opacity='1';
+  btnSi.style.pointerEvents='auto';
+  btnNo.style.pointerEvents='auto';
   timer=setInterval(()=>{time--;document.getElementById('timer').textContent=time;
-   if(time<=0){clearInterval(timer);res.push([questions[current].q,'Sin responder',questions[current].a,'Sin responder',questions[current].e]);unanswered++;current++;loadQ();}
+   if(time<=0){clearInterval(timer);res.push([questions[current].q,'Sin responder',questions[current].a,'⏰',questions[current].e]);unanswered++;current++;loadQ();}
   },1000);
  }
 };
@@ -70,7 +84,7 @@ function finish(){
  let percentage=Math.round(correct/questions.length*100);
  document.getElementById('porcentaje').textContent=percentage+'%';
  let b=document.getElementById('summaryBody');
- res.forEach((r,i)=>b.innerHTML+=`<tr><td>${i+1}</td><td>${r[0]}</td><td>${r[1]}</td><td>${r[2]}</td><td>${r[3]}</td><td>${r[4]}</td></tr>`);
+ res.forEach((r,i)=>b.innerHTML+=`<tr><td>${i+1}</td><td>${r[0]}</td><td>${r[1]}</td><td>${r[3]}</td><td>${r[4]}</td></tr>`);
 }
 document.getElementById('reiniciar').onclick=()=>location.reload();
 
