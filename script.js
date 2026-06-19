@@ -84,7 +84,7 @@ function finish(){
  let percentage=Math.round(correct/questions.length*100);
  document.getElementById('porcentaje').textContent=percentage+'%';
  let b=document.getElementById('summaryBody');
- res.forEach((r,i)=>b.innerHTML+=`<tr><td>${i+1}</td><td>${r[0]}</td><td>${r[1]}</td><td>${r[3]}</td><td>${r[4]}</td></tr>`);
+ res.forEach((r,i)=>b.innerHTML+=`<tr><td>${i+1}</td><td>${r[0]}</td><td>${r[1]}</td><td>${r[2]}</td><td>${r[3]}</td><td>${r[4]}</td></tr>`);
 }
 document.getElementById('reiniciar').onclick=()=>location.reload();
 
